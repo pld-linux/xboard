@@ -5,8 +5,6 @@ Version:	4.0.0
 Release:	4
 License:	GPL
 Group:		X11/Applications/Games
-Group(de):	X11/Applikationen/Spiele
-Group(pl):	X11/Aplikacje/Gry
 Source0:	ftp://ftp.gnu.org/pub/gnu/%{name}-%{version}.tar.gz
 Patch0:		%{name}-header.patch
 Patch1:		%{name}-4.0.0-xref.patch
