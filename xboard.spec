@@ -34,7 +34,7 @@ programami szachowymi GNUchess i Crafty, serwerami Internet Chess
 %patch1 -p1
 
 %build
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure2_13
 %{__make} infodir=%{_infodir}
