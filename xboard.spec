@@ -1,7 +1,8 @@
 Summary:	An X Window System graphical chessboard
+Summary(pl):	Graficzna szachownica dla X Window
 Name:		xboard
 Version:	4.0.0 
-Release:	3
+Release:	4
 Group:		X11/Games
 Group(pl):	X11/Gry
 Source0:	ftp://ftp.gnu.org/pub/gnu/%{name}-%{version}.tar.gz
@@ -26,6 +27,8 @@ Install the xboard package if you need a graphical chessboard.
 %patch1 -p1
 
 %build
+aclocal
+autoconf
 %configure
 %{__make} infodir=%{_infodir}
 
