@@ -8,7 +8,7 @@ Patch0:		xboard-header.patch
 Patch1:		xboard-4.0.0-xref.patch
 Copyright:	GPL
 Prereq:		/usr/sbin/fix-info-dir
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		/usr/X11R6/man
