@@ -3,12 +3,15 @@ Summary(pl):	Graficzna szachownica dla X Window
 Name:		xboard
 Version:	4.0.0 
 Release:	4
-Group:		X11/Games
-Group(pl):	X11/Gry
-Source0:	ftp://ftp.gnu.org/pub/gnu/%{name}-%{version}.tar.gz
-Patch0:		xboard-header.patch
-Patch1:		xboard-4.0.0-xref.patch
 License:	GPL
+Group:		X11/Applications/Games
+Group(de):	X11/Applikationen/Spiele
+Group(pl):	X11/Aplikacje/Gry
+Source0:	ftp://ftp.gnu.org/pub/gnu/%{name}-%{version}.tar.gz
+Patch0:		%{name}-header.patch
+Patch1:		%{name}-4.0.0-xref.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -20,6 +23,11 @@ used with the GNUchess and Crafty chess programs, with Internet Chess
 Servers (ICSs), with chess via email, or with your own saved games.
 
 Install the xboard package if you need a graphical chessboard.
+
+%description -l pl
+Xboard to graficzna szachownica pod X Window System, u¿ywana z
+programami szachowymi GNUchess i Crafty, serwerami Internet Chess
+(ICS), z szachami przez pocztê elektroniczn± itd.
 
 %prep
 %setup -q 
@@ -40,9 +48,6 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/wmconfig
 	bindir=$RPM_BUILD_ROOT%{_bindir} \
 	man6dir=$RPM_BUILD_ROOT%{_mandir}/man6 \
 	infodir=$RPM_BUILD_ROOT%{_infodir}
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man6/* \
-	$RPM_BUILD_ROOT%{_infodir}/*
 
 cat > $RPM_BUILD_ROOT%{_sysconfdir}/X11/wmconfig/xboard <<EOF
 xboard name "xboard"
@@ -67,7 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/zic2xpm
 %attr(755,root,root) %{_bindir}/cmail
 %attr(755,root,root) %{_bindir}/pxboard
-%{_mandir}/man6/xboard.6.gz
-%{_mandir}/man6/zic2xpm.6.gz
-%{_mandir}/man6/cmail.6.gz
-%{_infodir}/xboard.info.gz
+%{_mandir}/man6/xboard.6*
+%{_mandir}/man6/zic2xpm.6*
+%{_mandir}/man6/cmail.6*
+%{_infodir}/xboard.info*
