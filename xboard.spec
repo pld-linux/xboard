@@ -83,13 +83,8 @@ Xboard - це граф╕чний ╕нтерфейс до шахових програм, який може бути
 %patch0 -p1
 
 %build
-rm -f missing
-rm -f acinclude.m4
-%{__aclocal} -I .
-%{__autoheader}
-%{__automake}
-%{__autoconf}
-%configure
+cp -f /usr/share/automake/config.* .
+%configure2_13
 %{__make}
 makeinfo xboard.texinfo
 
