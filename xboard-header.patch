@@ -1,0 +1,114 @@
+--- xboard-4.0.0/parser.c.orig	Sat Jun 20 21:36:22 1998
++++ xboard-4.0.0/parser.c	Tue Dec 22 15:18:45 1998
+@@ -1,4 +1,4 @@
+-# include "stdio.h"
++#include <stdio.h>
+ # define U(x) ((x)&0377)
+ # define NLSTATE yyprevious=YYNEWLINE
+ # define BEGIN yybgin = yysvec + 1 +
+@@ -17,7 +17,8 @@
+ int yymorfg;
+ extern unsigned char *yysptr, yysbuf[];
+ int yytchar;
+-FILE *yyin = {stdin}, *yyout = {stdout};
++FILE *yyin;
++FILE *yyout;
+ extern int yylineno;
+ struct yysvf { 
+ 	struct yywork *yystoff;
+@@ -780,6 +781,7 @@
+ case -1:
+ break;
+ default:
++yyout = stdout;
+ fprintf(yyout,"bad switch yylook %d",nstr);
+ } return(0); }
+ /* end of yylex */
+@@ -889,6 +891,7 @@
+ 	*result = count;
+ 	return;
+     } else {
++	yyin = stdin;
+ 	count = fread(buf, 1, max_size, yyin);
+ 	if (count == 0) {
+ 	    *result = YY_NULL;
+@@ -5532,6 +5535,7 @@
+ 		if (yyprevious==YYNEWLINE) yystate++;
+ 		for (;;){
+ # ifdef LEXDEBUG
++			yyout = stdout;
+ 			if(debug)fprintf(yyout,"state %d\n",yystate-yysvec-1);
+ # endif
+ 			yyt = yystate->yystoff;
+@@ -5542,6 +5546,7 @@
+ 				}
+ 			*yylastch++ = yych = input();
+             if (yylastch >= yytext + YYLMAX) {
++		yyout = stdout;
+                 fprintf(yyout, "Maximum token length exceeded\n");
+                 yytext[YYLMAX] = 0;
+                 return 0;
+@@ -5550,6 +5555,7 @@
+ 		tryagain:
+ # ifdef LEXDEBUG
+ 			if(debug){
++				yyout = stdout;
+ 				fprintf(yyout,"char ");
+ 				allprint(yych);
+ 				putchar('\n');
+@@ -5569,6 +5575,7 @@
+ 			else if(yyt < yycrank) {		/* r < yycrank */
+ 				yyt = yyr = yycrank+(yycrank-yyt);
+ # ifdef LEXDEBUG
++				yyout = stdout;
+ 				if(debug)fprintf(yyout,"compressed state\n");
+ # endif
+ 				yyt = yyt + yych;
+@@ -5581,6 +5588,7 @@
+ 				yyt = yyr + YYU(yymatch[yych]);
+ # ifdef LEXDEBUG
+ 				if(debug){
++					yyout = stdout;
+ 					fprintf(yyout,"try fall back character ");
+ 					allprint(YYU(yymatch[yych]));
+ 					putchar('\n');
+@@ -5595,6 +5603,7 @@
+ 				}
+ 			if ((yystate = yystate->yyother) && (yyt= yystate->yystoff) != yycrank){
+ # ifdef LEXDEBUG
++				yyout = stdout;
+ 				if(debug)fprintf(yyout,"fall back to state %d\n",yystate-yysvec-1);
+ # endif
+ 				goto tryagain;
+@@ -5605,6 +5614,7 @@
+ 		contin:
+ # ifdef LEXDEBUG
+ 			if(debug){
++				yyout = stdout; 
+ 				fprintf(yyout,"state %d char ",yystate-yysvec-1);
+ 				allprint(yych);
+ 				putchar('\n');
+@@ -5614,6 +5624,7 @@
+ 			}
+ # ifdef LEXDEBUG
+ 		if(debug){
++			yyout = stdout; 
+ 			fprintf(yyout,"stopped at %d with ",*(lsp-1)-yysvec-1);
+ 			allprint(yych);
+ 			putchar('\n');
+@@ -5633,6 +5644,7 @@
+ 				yylsp = lsp;
+ 				yyleng = yylastch-yytext+1;
+                 if (yyleng >= YYLMAX) {
++		    yyout = stdout; 
+                     fprintf(yyout, "Maximum token length exceeded\n");
+                     yytext[YYLMAX] = 0;
+                     return 0;
+@@ -5640,6 +5652,7 @@
+ 				yytext[yyleng] = 0;
+ # ifdef LEXDEBUG
+ 				if(debug){
++					yyout = stdout; 
+ 					fprintf(yyout,"\nmatch ");
+ 					sprint(yytext);
+ 					fprintf(yyout," action %d\n",*yyfnd);

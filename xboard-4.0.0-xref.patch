@@ -1,0 +1,11 @@
+--- xboard-4.0.0/xboard.texi~	Sat Jun 20 21:36:22 1998
++++ xboard-4.0.0/xboard.texi	Mon Mar 22 12:10:03 1999
+@@ -207,7 +207,7 @@
+ @item @value{LCNAME} -ics -icshost hostname [options]
+ runs @value{NAME} as an interface to the Internet Chess Server
+ (ICS). You can play against other ICS users, observe games they are
+-playing, or review games that have recently finished. @xref{ICS}
++playing, or review games that have recently finished. @xref{ICS},
+ All the ``wild'' chess variants on ICS are supported, including bughouse.
+ @item @value{LCNAME} -ncp [options]
+ lets you use @value{NAME} as a simple chessboard to play through
