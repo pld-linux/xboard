@@ -8,17 +8,16 @@ Summary(ru):	Графический (X11) интерфейс к шахматным программам
 Summary(tr):	GNU Chess (satranГ) oyununa X11 grafik arabirimi
 Summary(uk):	Граф╕чний (X11) ╕нтерфейс до шахових програм
 Name:		xboard
-Version:	4.2.6
-Release:	8
+Version:	4.2.7
+Release:	1
 License:	GPL
 Group:		X11/Applications/Games
-Source0:	http://www.tim-mann.org/xboard/%{name}-%{version}.tar.gz
-# Source0-md5:	1d6e38c61277eed6ad7af352586b37d5
+Source0:	ftp://ftp.gnu.org/gnu/xboard/%{name}-%{version}.tar.gz
+# Source0-md5:	b70ad8ff7569975302c5fb402d5eea32
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-info.patch
 URL:		http://www.tim-mann.org/xboard.html
-BuildRequires:	automake
 BuildRequires:	texinfo
 Requires:	gnuchess
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -79,10 +78,10 @@ Xboard - це граф╕чний ╕нтерфейс до шахових програм, який може бути
 %patch0 -p1
 
 %build
-cp -f /usr/share/automake/config.* .
-%configure2_13
+%configure
 %{__make}
-makeinfo xboard.texinfo
+
+%{__make} info
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -94,7 +93,8 @@ install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games/Board,%{_pixmapsdir}}
 	man6dir=$RPM_BUILD_ROOT%{_mandir}/man6 \
 	infodir=$RPM_BUILD_ROOT%{_infodir}
 
-install xboard.info* $RPM_BUILD_ROOT%{_infodir}
+echo '.so xboard.6' > $RPM_BUILD_ROOT%{_mandir}/man6/cmail.6
+echo '.so xboard.6' > $RPM_BUILD_ROOT%{_mandir}/man6/pxboard.6
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Games/Board
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
@@ -110,13 +110,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/xboard
-%attr(755,root,root) %{_bindir}/zic2xpm
 %attr(755,root,root) %{_bindir}/cmail
 %attr(755,root,root) %{_bindir}/pxboard
+%attr(755,root,root) %{_bindir}/xboard
+%attr(755,root,root) %{_bindir}/zic2xpm
+%{_mandir}/man6/cmail.6*
+%{_mandir}/man6/pxboard.6*
 %{_mandir}/man6/xboard.6*
 %{_mandir}/man6/zic2xpm.6*
-%{_mandir}/man6/cmail.6*
 %{_infodir}/xboard.info*
 %{_applnkdir}/Games/Board/*
 %{_pixmapsdir}/*
