@@ -1,7 +1,7 @@
 Summary:	An X Window System graphical chessboard
 Summary(pl):	Graficzna szachownica dla X Window
 Name:		xboard
-Version:	4.0.0 
+Version:	4.0.0
 Release:	4
 License:	GPL
 Group:		X11/Applications/Games
@@ -10,7 +10,7 @@ Patch0:		%{name}-header.patch
 Patch1:		%{name}-4.0.0-xref.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:  texinfo
+BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -29,7 +29,7 @@ programami szachowymi GNUchess i Crafty, serwerami Internet Chess
 (ICS), z szachami przez pocztê elektroniczn± itd.
 
 %prep
-%setup -q 
+%setup -q
 %patch0 -p1
 %patch1 -p1
 
