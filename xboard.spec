@@ -9,7 +9,7 @@ Summary(tr):	GNU Chess (satranГ) oyununa X11 grafik arabirimi
 Summary(uk):	Граф╕чний (X11) ╕нтерфейс до шахових програм
 Name:		xboard
 Version:	4.2.7
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://ftp.gnu.org/gnu/xboard/%{name}-%{version}.tar.gz
