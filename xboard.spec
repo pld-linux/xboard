@@ -13,6 +13,7 @@ Release:	5
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	http://www.tim-mann.org/xboard/%{name}-%{version}.tar.gz
+# Source0-md5:	1d6e38c61277eed6ad7af352586b37d5
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-info.patch
