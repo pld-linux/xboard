@@ -18,6 +18,7 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-info.patch
 URL:		http://www.tim-mann.org/xboard.html
+BuildRequires:	automake
 BuildRequires:	texinfo
 Requires:	gnuchess
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -78,6 +79,7 @@ Xboard - це граф╕чний ╕нтерфейс до шахових програм, який може бути
 %patch0 -p1
 
 %build
+cp -f /usr/share/automake/config.sub .
 %configure
 %{__make}
 
