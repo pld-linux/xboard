@@ -54,4 +54,5 @@ Exec=xboard
 Icon=xboard.png
 Terminal=false
 Type=Application
+Categories=Game;BoardGame;
 # vi: encoding=utf-8
