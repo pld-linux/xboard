@@ -9,7 +9,7 @@ Summary(tr):	GNU Chess (satranГ) oyununa X11 grafik arabirimi
 Summary(uk):	Граф╕чний (X11) ╕нтерфейс до шахових програм
 Name:		xboard
 Version:	4.2.6
-Release:	7
+Release:	8
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	http://www.tim-mann.org/xboard/%{name}-%{version}.tar.gz
@@ -18,14 +18,10 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-info.patch
 URL:		http://www.tim-mann.org/xboard.html
-BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	texinfo
 Requires:	gnuchess
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_prefix		/usr/X11R6
-%define		_mandir		/usr/X11R6/man
 
 %description
 Xboard is an X Window System based graphical chessboard which can be
@@ -92,7 +88,8 @@ makeinfo xboard.texinfo
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games/Board,%{_pixmapsdir}}
 
-%{__make} install prefix=$RPM_BUILD_ROOT%{_prefix} \
+%{__make} install \
+	prefix=$RPM_BUILD_ROOT%{_prefix} \
 	bindir=$RPM_BUILD_ROOT%{_bindir} \
 	man6dir=$RPM_BUILD_ROOT%{_mandir}/man6 \
 	infodir=$RPM_BUILD_ROOT%{_infodir}
