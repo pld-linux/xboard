@@ -27,13 +27,13 @@ Install the xboard package if you need a graphical chessboard.
 
 %build
 %configure
-make infodir=%{_infodir}
+%{__make} infodir=%{_infodir}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/wmconfig
 
-make install prefix=$RPM_BUILD_ROOT%{_prefix} \
+%{__make} install prefix=$RPM_BUILD_ROOT%{_prefix} \
 	bindir=$RPM_BUILD_ROOT%{_bindir} \
 	man6dir=$RPM_BUILD_ROOT%{_mandir}/man6 \
 	infodir=$RPM_BUILD_ROOT%{_infodir}
