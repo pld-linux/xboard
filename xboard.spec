@@ -87,7 +87,7 @@ cp -f /usr/share/automake/config.sub .
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games/Board,%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
@@ -98,7 +98,7 @@ install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games/Board,%{_pixmapsdir}}
 echo '.so xboard.6' > $RPM_BUILD_ROOT%{_mandir}/man6/cmail.6
 echo '.so xboard.6' > $RPM_BUILD_ROOT%{_mandir}/man6/pxboard.6
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Games/Board
+install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %clean
@@ -121,5 +121,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/xboard.6*
 %{_mandir}/man6/zic2xpm.6*
 %{_infodir}/xboard.info*
-%{_applnkdir}/Games/Board/*
+%{_desktopdir}/*
 %{_pixmapsdir}/*
