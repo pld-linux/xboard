@@ -12,6 +12,7 @@ Patch0:		%{name}-header.patch
 Patch1:		%{name}-4.0.0-xref.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:  texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
