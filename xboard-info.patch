@@ -1,7 +1,6 @@
---- xboard-4.2.6/xboard.texinfo.in~	Mon Nov 11 12:51:09 2002
-+++ xboard-4.2.6/xboard.texinfo.in	Mon Nov 11 12:51:09 2002
-@@ -15,10 +15,10 @@
- 
+--- xboard-4.2.7/xboard.texi.orig	2003-11-19 09:53:36.000000000 +0100
++++ xboard-4.2.7/xboard.texi	2003-12-01 19:27:45.498112040 +0100
+@@ -1,9 +1,9 @@
  @ifinfo
  @format
 -INFO-DIR-SECTION Games
@@ -10,7 +9,7 @@
 -END-INFO-DIR-ENTRY
 +@dircategory Games:
 +@direntry
-+* xboard: (xboard).			An X11 graphical chessboard
++* xboard: (xboard).			An X Window System graphical chessboard
 +@end direntry
  @end format
  @end ifinfo
