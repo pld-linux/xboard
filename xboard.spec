@@ -7,7 +7,6 @@ Source:		ftp://ftp.gnu.org/pub/gnu/%{name}-%{version}.tar.gz
 Patch0:		xboard-header.patch
 Patch1:		xboard-4.0.0-xref.patch
 Copyright:	GPL
-Prereq:		/usr/sbin/fix-info-dir
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -54,10 +53,10 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+[ -x /usr/sbin/fix-info-dir ] && /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %postun
-/usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+[ -x /usr/sbin/fix-info-dir ] && /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %files
 %defattr(644,root,root,755)
