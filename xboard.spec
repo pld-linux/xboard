@@ -38,8 +38,6 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/wmconfig
 	man6dir=$RPM_BUILD_ROOT%{_mandir}/man6 \
 	infodir=$RPM_BUILD_ROOT%{_infodir}
 
-strip --strip-unneeded $RPM_BUILD_ROOT%{_bindir}/* || :
-
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man6/* \
 	$RPM_BUILD_ROOT%{_infodir}/*
 
