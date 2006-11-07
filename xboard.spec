@@ -121,5 +121,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man6/xboard.6*
 %{_mandir}/man6/zic2xpm.6*
 %{_infodir}/xboard.info*
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
