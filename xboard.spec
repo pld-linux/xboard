@@ -1,12 +1,12 @@
 Summary:	An X Window System graphical chessboard
-Summary(de):	X11-Schnittstelle fЭr GNU-Schach
-Summary(es):	Interface X11 para el ajedrez de la GNU
-Summary(fr):	Interface X11 au jeu d'Иchecs de GNU
-Summary(pl):	Graficzna szachownica dla X Window
-Summary(pt_BR):	Interface X11 para o xadrez da GNU
-Summary(ru):	Графический (X11) интерфейс к шахматным программам
-Summary(tr):	GNU Chess (satranГ) oyununa X11 grafik arabirimi
-Summary(uk):	Граф╕чний (X11) ╕нтерфейс до шахових програм
+Summary(de.UTF-8):   X11-Schnittstelle fц╪r GNU-Schach
+Summary(es.UTF-8):   Interface X11 para el ajedrez de la GNU
+Summary(fr.UTF-8):   Interface X11 au jeu d'ц╘checs de GNU
+Summary(pl.UTF-8):   Graficzna szachownica dla X Window
+Summary(pt_BR.UTF-8):   Interface X11 para o xadrez da GNU
+Summary(ru.UTF-8):   п⌠я─п╟я└п╦я┤п╣я│п╨п╦п╧ (X11) п╦п╫я┌п╣я─я└п╣п╧я│ п╨ я┬п╟я┘п╪п╟я┌п╫я▀п╪ п©я─п╬пЁя─п╟п╪п╪п╟п╪
+Summary(tr.UTF-8):   GNU Chess (satranц╖) oyununa X11 grafik arabirimi
+Summary(uk.UTF-8):   п⌠я─п╟я└я√я┤п╫п╦п╧ (X11) я√п╫я┌п╣я─я└п╣п╧я│ п╢п╬ я┬п╟я┘п╬п╡п╦я┘ п©я─п╬пЁя─п╟п╪
 Name:		xboard
 Version:	4.2.7
 Release:	4
@@ -28,51 +28,51 @@ Xboard is an X Window System based graphical chessboard which can be
 used with the GNUchess and Crafty chess programs, with Internet Chess
 Servers (ICSs), with chess via email, or with your own saved games.
 
-%description -l de
-xboard stellt eine einfach zu bedienende, grafische OberflДche fЭr
-GNU-Schach bereit, so daъ Sie sich in stundenlange SchachkДmpfe
-verwickeln kЖnnen, ohne komplizierte Befehle lernen zu mЭssen.Es lДъt
+%description -l de.UTF-8
+xboard stellt eine einfach zu bedienende, grafische Oberflц╓che fц╪r
+GNU-Schach bereit, so daц÷ Sie sich in stundenlange Schachkц╓mpfe
+verwickeln kц╤nnen, ohne komplizierte Befehle lernen zu mц╪ssen.Es lц╓ц÷t
 sich auch als Frontend zum Austragen von Schachpartien gegen andere
 Internet-Benutzer einsetzen.
 
-%description -l es
-xboard te ofrece una interface grАfica fАcil de usar para el programa
-de ajedrez de GNU, permitiendo que aproveches horas de la aciСn
+%description -l es.UTF-8
+xboard te ofrece una interface grц║fica fц║cil de usar para el programa
+de ajedrez de GNU, permitiendo que aproveches horas de la aciцЁn
 intelectual sin tener que aprender comandos complicados.
 
-%description -l fr
-xboard vous offre une interface graphique facile Ю utiliser pour le
-jeu d'Иchecs de GNU. Il vous permet d'apprИcier les heures de
-rИflexion des Иchecs sans avoir Ю apprendre des commandes complexes.
-Il peut aussi Йtre utilisИ comme frontal pour jouer aux Иchecs avec
+%description -l fr.UTF-8
+xboard vous offre une interface graphique facile ц═ utiliser pour le
+jeu d'ц╘checs de GNU. Il vous permet d'apprц╘cier les heures de
+rц╘flexion des ц╘checs sans avoir ц═ apprendre des commandes complexes.
+Il peut aussi ц╙tre utilisц╘ comme frontal pour jouer aux ц╘checs avec
 d'autres personnes sur l'Internet.
 
-%description -l pl
-Xboard to graficzna szachownica pod X Window System, u©ywana z
+%description -l pl.UTF-8
+Xboard to graficzna szachownica pod X Window System, uе╪ywana z
 programami szachowymi GNUchess i Crafty, serwerami Internet Chess
-(ICS), z szachami przez pocztЙ elektroniczn╠ itd.
+(ICS), z szachami przez pocztд≥ elektronicznд┘ itd.
 
-%description -l pt_BR
-xboard oferece a vocЙ uma interface grАfica fАcil de usar para o
-programa de xadrez da GNU, permitindo vocЙ aproveitar horas da aГЦo
+%description -l pt_BR.UTF-8
+xboard oferece a vocц╙ uma interface grц║fica fц║cil de usar para o
+programa de xadrez da GNU, permitindo vocц╙ aproveitar horas da aц╖цёo
 intelectual sem ter que aprender comandos complicados.
 
-%description -l ru
-Xboard - это графический интерфейс к шахматным программам, который
-может быть использован с программами GNUchess и Crafty, с шахматными
-серверами в Интернете (ICS), с шахматами по электронной почте или с
-сохраненными записями игр.
+%description -l ru.UTF-8
+Xboard - я█я┌п╬ пЁя─п╟я└п╦я┤п╣я│п╨п╦п╧ п╦п╫я┌п╣я─я└п╣п╧я│ п╨ я┬п╟я┘п╪п╟я┌п╫я▀п╪ п©я─п╬пЁя─п╟п╪п╪п╟п╪, п╨п╬я┌п╬я─я▀п╧
+п╪п╬п╤п╣я┌ п╠я▀я┌я▄ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫ я│ п©я─п╬пЁя─п╟п╪п╪п╟п╪п╦ GNUchess п╦ Crafty, я│ я┬п╟я┘п╪п╟я┌п╫я▀п╪п╦
+я│п╣я─п╡п╣я─п╟п╪п╦ п╡ п≤п╫я┌п╣я─п╫п╣я┌п╣ (ICS), я│ я┬п╟я┘п╪п╟я┌п╟п╪п╦ п©п╬ я█п╩п╣п╨я┌я─п╬п╫п╫п╬п╧ п©п╬я┤я┌п╣ п╦п╩п╦ я│
+я│п╬я┘я─п╟п╫п╣п╫п╫я▀п╪п╦ п╥п╟п©п╦я│я▐п╪п╦ п╦пЁя─.
 
-%description -l tr
-xboard, GNU chess programЩna grafik arabirimi ekleyerek kullanЩmЩ
+%description -l tr.UTF-8
+xboard, GNU chess programд╠na grafik arabirimi ekleyerek kullanд╠mд╠
 kolay ve rahat bir ortam sunar. Saatler boyunca kafa yorabilirsiniz.
-Internet Эzerinden arkadaЧЩnЩzla da oynayabilirsiniz.
+Internet ц╪zerinden arkadaе÷д╠nд╠zla da oynayabilirsiniz.
 
-%description -l uk
-Xboard - це граф╕чний ╕нтерфейс до шахових програм, який може бути
-використаний з програмами GNUchess та Crafty, з шаховими серверами в
-╤нтернет╕ (ICS), з шахами по електронн╕й пошт╕ чи ╕з збереженими
-записами ╕гор.
+%description -l uk.UTF-8
+Xboard - я├п╣ пЁя─п╟я└я√я┤п╫п╦п╧ я√п╫я┌п╣я─я└п╣п╧я│ п╢п╬ я┬п╟я┘п╬п╡п╦я┘ п©я─п╬пЁя─п╟п╪, я▐п╨п╦п╧ п╪п╬п╤п╣ п╠я┐я┌п╦
+п╡п╦п╨п╬я─п╦я│я┌п╟п╫п╦п╧ п╥ п©я─п╬пЁя─п╟п╪п╟п╪п╦ GNUchess я┌п╟ Crafty, п╥ я┬п╟я┘п╬п╡п╦п╪п╦ я│п╣я─п╡п╣я─п╟п╪п╦ п╡
+п├п╫я┌п╣я─п╫п╣я┌я√ (ICS), п╥ я┬п╟я┘п╟п╪п╦ п©п╬ п╣п╩п╣п╨я┌я─п╬п╫п╫я√п╧ п©п╬я┬я┌я√ я┤п╦ я√п╥ п╥п╠п╣я─п╣п╤п╣п╫п╦п╪п╦
+п╥п╟п©п╦я│п╟п╪п╦ я√пЁп╬я─.
 
 %prep
 %setup -q
