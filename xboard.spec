@@ -1,12 +1,12 @@
 Summary:	An X Window System graphical chessboard
-Summary(de.UTF-8):   X11-Schnittstelle für GNU-Schach
-Summary(es.UTF-8):   Interface X11 para el ajedrez de la GNU
-Summary(fr.UTF-8):   Interface X11 au jeu d'échecs de GNU
-Summary(pl.UTF-8):   Graficzna szachownica dla X Window
-Summary(pt_BR.UTF-8):   Interface X11 para o xadrez da GNU
-Summary(ru.UTF-8):   Графический (X11) интерфейс к шахматным программам
-Summary(tr.UTF-8):   GNU Chess (satranç) oyununa X11 grafik arabirimi
-Summary(uk.UTF-8):   Графічний (X11) інтерфейс до шахових програм
+Summary(de.UTF-8):	X11-Schnittstelle für GNU-Schach
+Summary(es.UTF-8):	Interface X11 para el ajedrez de la GNU
+Summary(fr.UTF-8):	Interface X11 au jeu d'échecs de GNU
+Summary(pl.UTF-8):	Graficzna szachownica dla X Window
+Summary(pt_BR.UTF-8):	Interface X11 para o xadrez da GNU
+Summary(ru.UTF-8):	Графический (X11) интерфейс к шахматным программам
+Summary(tr.UTF-8):	GNU Chess (satranç) oyununa X11 grafik arabirimi
+Summary(uk.UTF-8):	Графічний (X11) інтерфейс до шахових програм
 Name:		xboard
 Version:	4.2.7
 Release:	4
