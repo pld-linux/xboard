@@ -84,7 +84,7 @@ Xboard - це графічний інтерфейс до шахових прог
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
+%patch4 -p0
 
 %build
 cp -f /usr/share/automake/config.sub .
