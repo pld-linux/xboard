@@ -1,0 +1,174 @@
+--- xboard-4.2.7/common.h.lowtime	2003-10-28 03:21:00.000000000 +0800
++++ xboard-4.2.7/common.h	2005-06-03 07:26:40.000000000 +0800
+@@ -425,6 +425,10 @@ typedef struct {
+     int zippyMaxGames;
+     int zippyReplayTimeout; /*seconds*/
+ #endif
++#if LOWTIMEWARNING
++  char *lowTimeWarningColor;
++  Boolean lowTimeWarning;
++#endif
+ } AppData, *AppDataPtr;
+ 
+ extern AppData appData;
+--- xboard-4.2.7/xboard.h.lowtime	2003-10-28 03:21:00.000000000 +0800
++++ xboard-4.2.7/xboard.h	2005-06-03 07:26:40.000000000 +0800
+@@ -64,6 +64,7 @@
+ #define COLOR_REQUEST           "red"
+ #define COLOR_SEEK              "blue"
+ #define COLOR_NORMAL            "default"
++#define COLOR_LOWTIMEWARNING    "red"
+ 
+ typedef struct {
+     char *name;
+--- xboard-4.2.7/xboard.man.lowtime	2003-11-29 05:35:39.000000000 +0800
++++ xboard-4.2.7/xboard.man	2005-06-03 07:26:40.000000000 +0800
+@@ -1641,6 +1641,15 @@ Sets the Animate Moving menu option. See
+ .B -animateSpeed n
+ Number of milliseconds delay between each animation frame when Animate
+ Moves is on.
++.TP
++.B -lowTimeWarning true/false
++When time is tight, use alternative color to show timer. This is done when
++the clock counts down to icsAlarmTime (5 seconds by default). It can be
++used in conjunction with sound alarm.  Default: true.
++.TP
++.B -lowTimeWarningColor color
++Color to use when lowTimeWarning option is used and time is tight.
++Default: red.
+ .PP
+ .SS Other Options
+ .TP
+--- xboard-4.2.7/xboard.c.lowtime	2003-11-19 16:42:18.000000000 +0800
++++ xboard-4.2.7/xboard.c	2005-06-03 07:26:40.000000000 +0800
+@@ -418,6 +418,9 @@ Display *xDisplay;
+ Window xBoardWindow;
+ Pixel lightSquareColor, darkSquareColor, whitePieceColor, blackPieceColor,
+   jailSquareColor, highlightSquareColor, premoveHighlightColor;
++#if LOWTIMEWARNING
++Pixel lowTimeWarningColor;
++#endif
+ GC lightSquareGC, darkSquareGC, jailSquareGC, lineGC, wdPieceGC, wlPieceGC,
+   bdPieceGC, blPieceGC, wbPieceGC, bwPieceGC, coordGC, highlineGC,
+   wjPieceGC, bjPieceGC, prelineGC;
+@@ -1136,6 +1139,14 @@ XtResource clientResources[] = {
+     { "showButtonBar", "showButtonBar", XtRBoolean,
+ 	sizeof(Boolean), XtOffset(AppDataPtr, showButtonBar),
+ 	XtRImmediate, (XtPointer) True },
++#if LOWTIMEWARNING
++    { "lowTimeWarningColor", "lowTimeWarningColor", XtRString,
++      sizeof(String), XtOffset(AppDataPtr, lowTimeWarningColor),
++      XtRString, COLOR_LOWTIMEWARNING },
++    { "lowTimeWarning", "lowTimeWarning", XtRBoolean,
++      sizeof(Boolean), XtOffset(AppDataPtr, lowTimeWarning),
++      XtRImmediate, (XtPointer) True },
++#endif   
+ };
+ 
+ XrmOptionDescRec shellOptions[] = {
+@@ -1426,6 +1437,10 @@ XrmOptionDescRec shellOptions[] = {
+     { "-showButtonBar", "showButtonBar", XrmoptionSepArg, NULL },
+     { "-buttons", "showButtonBar", XrmoptionNoArg, "True" },
+     { "-xbuttons", "showButtonBar", XrmoptionNoArg, "False" },
++#if LOWTIMEWARNING
++    { "-lowTimeWarningColor", "lowTimeWarningColor", XrmoptionSepArg, NULL },
++    { "-lowTimeWarning", "lowTimeWarning", XrmoptionSepArg, NULL },
++#endif
+ };
+ 
+ 
+@@ -1861,6 +1876,20 @@ main(argc, argv)
+     if (argc > 1) {
+ 	fprintf(stderr, "%s: unrecognized argument %s\n",
+ 		programName, argv[1]);
++	fprintf(stderr, "Recognized options:\n");
++	for(i = 0; i < XtNumber(shellOptions); i++) {
++	    j = fprintf(stderr, "  %s%s", shellOptions[i].option,
++		        (shellOptions[i].argKind == XrmoptionSepArg
++			 ? " ARG" : ""));
++	    if (i++ < XtNumber(shellOptions)) {
++		fprintf(stderr, "%*c%s%s\n", 40 - j, ' ',
++			shellOptions[i].option,
++			(shellOptions[i].argKind == XrmoptionSepArg
++			 ? " ARG" : ""));
++	    } else {
++		fprintf(stderr, "\n");
++	    }
++	}
+ 	exit(2);
+     }
+     
+@@ -2084,6 +2113,21 @@ main(argc, argv)
+ 	      programName);
+     }
+ 
++#if LOWTIMEWARNING
++
++    if (appData.lowTimeWarning && !appData.monoMode) {
++      vFrom.addr = (caddr_t) appData.lowTimeWarningColor;
++      vFrom.size = strlen(appData.lowTimeWarningColor);
++      XtConvert(shellWidget, XtRString, &vFrom, XtRPixel, &vTo);
++      if (vTo.addr == NULL) 
++	appData.monoMode = True;
++      else
++	lowTimeWarningColor = *(Pixel *) vTo.addr;
++    }
++
++#endif
++	
++
+     if (appData.monoMode && appData.debugMode) {
+ 	fprintf(stderr, "white pixel = 0x%lx, black pixel = 0x%lx\n",
+ 		(unsigned long) XWhitePixel(xDisplay, xScreen),
+@@ -7321,7 +7365,17 @@ DisplayTimerLabel(w, color, timer, highl
+ {
+     char buf[MSG_SIZ];
+     Arg args[16];
+-    
++
++#if LOWTIMEWARNING
++    Pixel foregroundOrWarningColor = timerForegroundPixel;
++
++    if (appData.lowTimeWarning
++	&& timer < appData.icsAlarmTime)
++
++      foregroundOrWarningColor = lowTimeWarningColor;
++
++#endif
++
+     if (appData.clockMode) {
+ 	sprintf(buf, "%s: %s", color, TimeString(timer));
+ 	XtSetArg(args[0], XtNlabel, buf);
+@@ -7331,11 +7385,24 @@ DisplayTimerLabel(w, color, timer, highl
+     }
+     
+     if (highlight) {
++
++#if LOWTIMEWARNING
++	XtSetArg(args[1], XtNbackground, foregroundOrWarningColor);
++#else
+ 	XtSetArg(args[1], XtNbackground, timerForegroundPixel);
++#endif
++
+ 	XtSetArg(args[2], XtNforeground, timerBackgroundPixel);
+     } else {
++
+ 	XtSetArg(args[1], XtNbackground, timerBackgroundPixel);
++
++#if LOWTIMEWARNING
++	XtSetArg(args[2], XtNforeground, foregroundOrWarningColor);
++#else
+ 	XtSetArg(args[2], XtNforeground, timerForegroundPixel);
++#endif
++
+     }
+     
+     XtSetValues(w, args, 3);
+--- xboard-4.2.7/config.h.in.lowtime	2000-12-17 10:24:48.000000000 +0800
++++ xboard-4.2.7/config.h.in	2005-06-03 07:26:40.000000000 +0800
+@@ -133,3 +133,5 @@
+ 
+ /* Define if you have the seq library (-lseq).  */
+ #undef HAVE_LIBSEQ
++
++#define LOWTIMEWARNING 1
