@@ -9,7 +9,7 @@ Summary(tr.UTF-8):	GNU Chess (satranç) oyununa X11 grafik arabirimi
 Summary(uk.UTF-8):	Графічний (X11) інтерфейс до шахових програм
 Name:		xboard
 Version:	4.2.7
-Release:	4
+Release:	5
 License:	GPL
 Group:		X11/Applications/Games
 Source0:	ftp://ftp.gnu.org/gnu/xboard/%{name}-%{version}.tar.gz
@@ -17,6 +17,9 @@ Source0:	ftp://ftp.gnu.org/gnu/xboard/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-lowtime-warning.patch
+Patch2:		%{name}-hilight-threatened-pieces.patch
+Patch3:		%{name}-xtname.patch
 URL:		http://www.tim-mann.org/xboard.html
 BuildRequires:	automake
 BuildRequires:	texinfo
@@ -77,6 +80,9 @@ Xboard - це графічний інтерфейс до шахових прог
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
