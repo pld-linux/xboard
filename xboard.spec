@@ -20,6 +20,7 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-lowtime-warning.patch
 Patch2:		%{name}-hilight-threatened-pieces.patch
 Patch3:		%{name}-xtname.patch
+Patch4:		%{name}-default-program.patch
 URL:		http://www.tim-mann.org/xboard.html
 BuildRequires:	automake
 BuildRequires:	texinfo
@@ -83,6 +84,7 @@ Xboard - це графічний інтерфейс до шахових прог
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
