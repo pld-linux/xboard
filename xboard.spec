@@ -25,6 +25,7 @@ URL:		http://www.tim-mann.org/xboard.html
 BuildRequires:	automake
 BuildRequires:	texinfo
 Suggests:	gnuchess
+Suggests:	crafty
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
