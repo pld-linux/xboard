@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=Xboard
 Name[af]=X-bord
 Name[eo]=X-Breto
@@ -51,7 +50,7 @@ Comment[zh_CN]=国际象棋游戏
 Comment[zh_TW]=棋類遊戲
 Comment[zu]=Gnome umdlalo wechesi
 Exec=xboard
-Icon=xboard.png
+Icon=xboard
 Terminal=false
 Type=Application
 Categories=Game;BoardGame;
