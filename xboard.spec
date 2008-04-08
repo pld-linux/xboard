@@ -12,7 +12,7 @@ Version:	4.2.7
 Release:	6
 License:	GPL
 Group:		X11/Applications/Games
-Source0:	ftp://ftp.gnu.org/gnu/xboard/%{name}-%{version}.tar.gz
+Source0:	http://ftp.gnu.org/gnu/xboard/%{name}-%{version}.tar.gz
 # Source0-md5:	b70ad8ff7569975302c5fb402d5eea32
 Source1:	%{name}.desktop
 Source2:	%{name}.png
