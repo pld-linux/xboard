@@ -24,7 +24,11 @@ BuildRequires:	librsvg-devel >= 2.14.0
 BuildRequires:	pango-devel
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.596
 BuildRequires:	texinfo
+Requires(post,postun):	gtk-update-icon-cache
+Requires:	hicolor-icon-theme
+Requires:	shared-mime-info
 Suggests:	crafty
 # TODO: package (now it's default program)
 #Suggests:	fairymax
@@ -114,9 +118,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
+%update_icon_cache hicolor
+%update_mime_database
 
 %postun	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
+%update_icon_cache hicolor
+%update_mime_database
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
