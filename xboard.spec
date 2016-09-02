@@ -30,8 +30,7 @@ Requires(post,postun):	gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 Requires:	shared-mime-info
 Suggests:	crafty
-# TODO: package (now it's default program)
-#Suggests:	fairymax
+Suggests:	fairymax
 Suggests:	gnuchess
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
