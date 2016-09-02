@@ -8,24 +8,27 @@ Summary(ru.UTF-8):	Графический (X11) интерфейс к шахма
 Summary(tr.UTF-8):	GNU Chess (satranç) oyununa X11 grafik arabirimi
 Summary(uk.UTF-8):	Графічний (X11) інтерфейс до шахових програм
 Name:		xboard
-Version:	4.2.7
-Release:	7
-License:	GPL
+Version:	4.9.1
+Release:	1
+License:	GPL v3+
 Group:		X11/Applications/Games
 Source0:	http://ftp.gnu.org/gnu/xboard/%{name}-%{version}.tar.gz
-# Source0-md5:	b70ad8ff7569975302c5fb402d5eea32
-Source1:	%{name}.desktop
-Source2:	%{name}.png
+# Source0-md5:	93d7475bbd69a06ff9cce7add5636beb
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-lowtime-warning.patch
-Patch2:		%{name}-hilight-threatened-pieces.patch
-Patch3:		%{name}-xtname.patch
-Patch4:		%{name}-default-program.patch
 URL:		http://www.tim-mann.org/xboard.html
-BuildRequires:	automake
+BuildRequires:	cairo-devel >= 1.2.0
+BuildRequires:	gettext-tools >= 0.17
+BuildRequires:	gtk+2-devel >= 2:2.16.0
+BuildRequires:	librsvg-devel >= 2.14.0
+# pangocairo
+BuildRequires:	pango-devel
+BuildRequires:	perl-base
+BuildRequires:	pkgconfig
 BuildRequires:	texinfo
-Suggests:	gnuchess
 Suggests:	crafty
+# TODO: package (now it's default program)
+#Suggests:	fairymax
+Suggests:	gnuchess
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -82,53 +85,57 @@ Xboard - це графічний інтерфейс до шахових прог
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p0
 
 %build
-cp -f /usr/share/automake/config.sub .
-%configure
+%configure \
+	--disable-silent-rules
 %{__make}
 
 %{__make} info
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
-	prefix=$RPM_BUILD_ROOT%{_prefix} \
-	bindir=$RPM_BUILD_ROOT%{_bindir} \
-	man6dir=$RPM_BUILD_ROOT%{_mandir}/man6 \
-	infodir=$RPM_BUILD_ROOT%{_infodir}
+	DESTDIR=$RPM_BUILD_ROOT
+
+install -p cmail $RPM_BUILD_ROOT%{_bindir}
 
 echo '.so xboard.6' > $RPM_BUILD_ROOT%{_mandir}/man6/cmail.6
 echo '.so xboard.6' > $RPM_BUILD_ROOT%{_mandir}/man6/pxboard.6
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
-install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+# engines integration files (see {gtk,xaw}/xboard.c)
+install -d $RPM_BUILD_ROOT%{_datadir}/games/plugins/{logos,xboard}
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p	/sbin/postshell
+%post	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun	-p	/sbin/postshell
+%postun	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/cmail
-%attr(755,root,root) %{_bindir}/pxboard
 %attr(755,root,root) %{_bindir}/xboard
-%attr(755,root,root) %{_bindir}/zic2xpm
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xboard.conf
+%{_datadir}/games/xboard
+%dir %{_datadir}/games/plugins
+%dir %{_datadir}/games/plugins/logos
+%dir %{_datadir}/games/plugins/xboard
+%{_datadir}/mime/packages/xboard.xml
+%{_desktopdir}/xboard.desktop
+%{_desktopdir}/xboard-config.desktop
+%{_desktopdir}/xboard-fen-viewer.desktop
+%{_desktopdir}/xboard-pgn-viewer.desktop
+%{_desktopdir}/xboard-tourney.desktop
+%{_iconsdir}/hicolor/48x48/apps/xboard.png
+%{_iconsdir}/hicolor/scalable/apps/xboard.svg
 %{_mandir}/man6/cmail.6*
 %{_mandir}/man6/pxboard.6*
 %{_mandir}/man6/xboard.6*
-%{_mandir}/man6/zic2xpm.6*
 %{_infodir}/xboard.info*
-%{_desktopdir}/*.desktop
-%{_pixmapsdir}/*
